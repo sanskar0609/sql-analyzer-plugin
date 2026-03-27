@@ -1,0 +1,34 @@
+plugins {
+    id 'java-gradle-plugin'
+    id 'maven-publish'
+}
+
+group = 'com.sanskar0609'   // ✅ ADD THIS
+version = '1.0.5'           // ✅ ADD THIS
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.github.javaparser:javaparser-core:3.25.5'
+    implementation 'org.yaml:snakeyaml:2.0'
+    implementation 'com.google.code.gson:gson:2.10.1'
+    
+    // Testing dependencies
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.1'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+gradlePlugin {
+    plugins {
+        sqlAnalyzer {
+            id = 'com.sanskar0609.sql-analyzer'
+            implementationClass = 'com.sanskar0609.SqlAnalyzerPlugin'
+        }
+    }
+}
